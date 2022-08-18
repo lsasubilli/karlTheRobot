@@ -24,22 +24,24 @@ public class Fix implements Directions
         Robot fred = new Robot(5, 6, North, 100);
         World.setVisible(true);
         World.setDelay(100);
+        World.setSize(25,25);
 
         Scanner sc = new Scanner(System.in); // Read the user input of an int
         System.out.println("What is the radius of your circle?");
-        int side = sc.nextInt();
-        System.out.println("The diameter is "+side*2);
-        System.out.println("The radius is "+side);
-        System.out.println("The circumference is"+side*2* Math.PI);
-        System.out.println("The area of the circle is :"+Math.pow(side,2)+Math.PI);
+        double side = sc.nextDouble();
+        System.out.println(side);
+        double actualSide = Double.parseDouble(String.valueOf(side));
 
-        World.setSize(50,50);
+
         makeCircle(side, fred);
 
         fred.move();
         fred.putBeeper();
 
-
+        System.out.println("The diameter is "+Math.round(side*2));
+        System.out.println("The radius is "+side);
+        System.out.println("The circumference is"+Math.round(side*2* Math.PI));
+        System.out.println("The area of the circle is :"+Math.round(Math.pow(side,2)+Math.PI));
     }
 
     //write a method that will turn right
@@ -49,7 +51,7 @@ public class Fix implements Directions
             r.turnLeft();
         }
     }
-    public static void makeCircle(int side, Robot fred){
+    public static void makeCircle(double side, Robot fred){
         for(int i=0;i<side*side;i++){
             for(int j=0;j<side*side;j++){
                 fred.move();
